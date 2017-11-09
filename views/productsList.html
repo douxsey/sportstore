@@ -1,0 +1,31 @@
+
+<div class="panel panel-default row" ng-hide="data.error" ng-controller="productListCtrl" >
+<div class="col-xs-3">
+  <a href="#" ng-class="getCategoryClass()" ng-click="selectCategory()"
+   class="btn btn-block btn-default btn-lg" >Home</a>
+  <a ng-click="selectCategory(category)" href="#" class="btn btn-block btn-lg btn-default"
+  ng-repeat="category in data.products | orderBy: 'category' | unique: 'category'"
+  ng-class="getCategoryClass(category)" >
+    {{category}} <!-- cant do item.category cause unique filters return string array -->
+  </a>
+</div>
+<div class="col-xs-8">
+<div class="well" ng-repeat="item in data.products | filter:categoryFilterFn | range:selectedPage:pageSize" >
+
+  <h3>
+    <strong>{{item.name}}</strong>
+    <span class="pull-right label label-primary" >{{item.price | currency}}</span>
+  </h3>
+  <span class="lead" >{{item.description}}</span>
+  <span class="pull-right btn btn-success" ng-click="addProductToCart(item)">Add to cart</span>
+</div>
+<div class="pull-right btn-group">
+  <a ng-repeat="item in data.products | filter:categoryFilterFn | pageCount:pageSize"
+  class="btn btn-default" ng-class="getPageClass(item+1)"
+  ng-click="selectPage(item+1)"
+   >
+{{item + 1}}
+  </a>
+</div>
+</div>
+</div>

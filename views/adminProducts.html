@@ -1,0 +1,64 @@
+<style>
+#productTable { width: auto; }
+#productTable td { max-width: 150px; text-overflow: ellipsis;
+overflow: hidden; white-space: nowrap; }
+#productTable td input { max-width: 125px; }
+</style>
+<div ng-controller="productsCtrl" class="well">
+  <table id="productTable" class="table table-striped table-bordered">
+      <tr>
+        <th>
+          name
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Category
+        </th>
+        <th>
+          Price
+        </th>
+        <th>
+
+        </th>
+      </tr>
+      <tr ng-repeat="item in products" >
+        <td>
+          {{item.name}}
+        </td>
+        <td class="description" >
+          {{item.description}}
+        </td>
+        <td>
+          {{item.category}}
+        </td>
+        <td>
+          {{item.price | currency }}
+        </td>
+        <td>
+          <button type="button" ng-click="startEdit(item)" class="btn btn-xs btn-primary" >Edit</button>
+          <button type="button" ng-click="deleteProduct(item)" class="btn btn-xs btn-primary" >Delete</button>
+        </td>
+      </tr>
+      <tr ng-class="{danger:editedProduct}" >
+        <td>
+          <input type="text" ng-model="editedProduct.name" required value="">
+        </td>
+        <td>
+          <input type="text" ng-model="editedProduct.description" required value="">
+        </td>
+        <td>
+          <input type="text" ng-model="editedProduct.category" required value="">
+        </td>
+        <td>
+          <input type="text" ng-model="editedProduct.price" required value="">
+        </td>
+        <td>
+          <button type="button" class="btn btn-xs btn-primary" ng-show="editedProduct.id" ng-click="updateProduct(item)" >Edit</button>
+          <button type="button" class="btn btn-xs btn-primary" ng-hide="editedProduct.id" ng-click="addProduct(item)" >New</button>
+          <button type="button" class="btn btn-xs btn-primary"  ng-click="cancelEdit()" >Cancel</button>
+        </td>
+      </tr>
+  </table>
+</div>

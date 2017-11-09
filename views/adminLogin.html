@@ -1,0 +1,22 @@
+<div class="well">
+  <div class="alert alert-info" >
+    Enter your pseudo and password to log in
+  </div>
+  <div class="alert alert-danger" ng-show="authenticationError" >
+    Error during authentication Error: {{authenticationError.status}}. Try again
+  </div>
+  <form novalidate name="authForm" >
+    <div class="form-group">
+      <label> Username : </label>
+      <input type="text" name="username" ng-model="username" class="form-control" required >
+    </div>
+    <div class="form-group">
+      <label> Password : </label>
+      <input type="password" name="password" ng-model="password" class="form-control" required >
+593 358 026
+    </div>
+    <div class="form-group">
+      <button  class="btn btn-primary" ng-disabled="authForm.$invalid" ng-click="authenticate(username,password)" >Log in</button>
+    </div>
+  </form>
+</div>

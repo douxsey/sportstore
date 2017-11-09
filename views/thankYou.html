@@ -1,0 +1,15 @@
+
+<div class="alert alert-danger" ng-show="data.orderError">
+  <p>
+    Error {{data.orderError.status}} . The order cant be completed.
+    <a href="#/placeorder">Try again</a>
+  </p>
+</div>
+<div class="alert alert-success" ng-show="data.orderId">
+  <h3>Thanks !</h3>
+  <p>
+    Your goods will be shipped as soon as possible. Here is your shipping reference
+     <span>{{data.orderId}}</span>
+<a href="#/products">Back to shopping</a>
+  </p>
+</div>
